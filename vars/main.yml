@@ -1,0 +1,13 @@
+source_url:                     'http://archive.raspberrypi.org/debian'
+source_suite:                   "{{ os_release_name }}"
+template_files:
+  - owner:                      'root'
+    group:                      'root'
+    mode:                       '0644'
+    src:                        'templates/conf/sources.list.d/list.j2'
+    dest:                       "/etc/apt/sources.list.d/raspios_{{ source_suite }}.list"
+
+source_components:
+  - 'main'
+  - 'contrib'
+  - 'non-free'

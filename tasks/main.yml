@@ -1,0 +1,9 @@
+---
+- include_tasks:                '../tasks/template_files.yml'
+
+- assert:
+    that:                       True
+    quiet:                      True
+  changed_when:                 True
+  when:                         template_files_result.changed
+  notify:                       'run updates'
