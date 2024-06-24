@@ -1,5 +1,6 @@
 ---
 - include_tasks:                '../tasks/template_files.yml'
+- include_tasks:                'write_config.yml'
 
 - assert:
     that:                       True
@@ -7,3 +8,7 @@
   changed_when:                 True
   when:                         template_files_result.changed
   notify:                       'run updates'
+
+# Reboot is required to enact changes to:  /boot/config.txt
+- include_tasks:                '../tasks/reboot.yml'
+  when:                         write_config_result.changed

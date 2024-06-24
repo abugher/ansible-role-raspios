@@ -1,0 +1,11 @@
+---
+- lineinfile:
+    path:                       '/boot/config.txt'
+    line:                       'dtoverlay=rpivid-v4l2'
+    # Don't overwrite any other "dtoverlay" line(s).
+    regexp:                     '^dtoverlay=rpivid-v4l2$'
+    state:                      'present'
+    # If not present, prepend the line before any section headings.
+    insertbefore:               .
+    firstmatch:                 True
+  register:                     write_config_result
